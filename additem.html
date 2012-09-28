@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--Justin Tilley Project 1 Term 1210-->
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="First HTML5 document" />
+		<meta name="keywords" content="html5, mobile developement, Full Sail University" />
+		<meta name="robots" content="index, follow" />
+		<meta name="viewport" content="user-scalable=no, width=device-width" />
+		<title>My First HTML5 Document</title>
+	</head>
+	<body>
+		<header>
+			<h1>DiY Vehicle Repairs</h1>
+		</header>
+		<form action="" method="post">
+			<fieldset>
+				<legend>Vehicle Information</legend>
+				<ul>
+					<li>Vehicle Region:
+						<ul>
+							<li><input type="radio" checked value="Domestic" id="domestic" name="region" /><label for="domestic">Domestic <small><i>Chevy,Dodge,Ford,ect.</i></small></label></li>
+							<li><input type="radio" value="Asian" id="asian" name="region" /><label for="asian">Asian <small><i>Honda,Nissan,Toyota,ect.</i></small></label></li>
+							<li><input type="radio" value="European" id="european" name="region" /><label for="european">European <small><i>BMW,Mercedes,Audi,ect.</i></small></label></li>	
+						</ul>
+					<li><label for="make">Make:</label><input type="text" id="make" /></li>
+					<li><label for="model">Model:</label><input type="text" id="model" /></li>
+					<li>
+						<label for="part">Part Category</label>
+						<select id=""part">
+							<optgroup label="Drivetrain">
+								<option value="Engine">Engine</option>
+								<option value="Transmission">Transmission</option>
+							</optgroup>
+							<optgroup label="Body">
+								<option value="Front">Front</option>
+								<option value="Rear">Rear</option>
+								<option value="Sides">Sides</option>
+							</optgroup>
+							<optgroup label="Chassis">
+								<option value=""Tires">Tires</option>
+								<option value="Suspension">Suspension</option>
+							</optgroup>
+						</select>
+					</li>
+					<li>Year
+						<input type="range" id="year" name="year" value="" min="1970" max="2012"/>
+					</li>
+					<li><label for="date">Expected date for repair:</label><input type="date" min="2012-01-01" max="2012-12-31" /></li>
+					<li><label for="comments">Description of repair:</label><textarea id="comments"></textarea></li>
+					<li><input type="hidden" value="true" /></li>
+				</ul>
+			</fieldset>
+			<input type="submit" value="Accept" />
+		</form>
+		<ul>
+			<li><a href="#">Clear Stored Data</a></li>
+			<li><a href="#">Display Data</a></li>
+		</ul>
+	</body>
+</html>
