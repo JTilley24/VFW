@@ -1,0 +1,88 @@
+/*
+Justin Tilley
+Project 2
+VFW Term 1210
+*/
+
+body{
+	background: #BFE3DF;
+}
+
+h1{
+	font-style: bold;
+	color: #5060BA;
+	text-align:center;
+	border: 1px dashed blue;
+}
+
+span{
+	font: 50px arial,sans-serif;
+	letter-spacing: -.08em;
+}
+
+p{
+	font-size: 18px;
+	color: #586954;
+}
+
+h2{
+	color: white;
+	letter-spacing: 1px;
+	font: Times;
+	text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+fieldset{
+	line-height: 30px;
+	font-size: 18px;
+	border: 1px dashed blue;
+}
+
+#radios{
+	list-style-type: none;
+}
+
+#exp{
+	color: gray;
+}
+
+#make{
+	margin-left: 8px;
+
+}
+
+#groups{
+	margin-left: 20px;
+}
+
+#result{
+	border: 1px solid gray;
+	background: white;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+#comments{
+	margin-left: 40px;
+
+}
+
+#submit{
+	margin-left: 20px;
+	font-size: 20px;
+	text-decoration: underline;
+}
+
+a{
+	border: 1px solid black;
+	border-radius: 10px;
+	background: #D6D5E3;
+	padding: 5px;
+	margin: 10px;
+}
+
+nav{
+	padding: 10px;
+	background: #B4B8CF;
+	margin-top: 20px
+}

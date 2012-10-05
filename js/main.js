@@ -1,9 +1,13 @@
+//Justin Tilley
+//Project 2
+//VFW Term 1210
+
 window.addEventListener("DOMContentLoaded", function(){
 	//alert(localStorage.value(0))
 	function $(x){
 		var element = document.getElementById(x);
 		return element;
-	};
+	}
 
 	function partCats(){
 		var selectLi = $("select");
@@ -17,7 +21,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			makeSelect.appendChild(makeOption);
 		}
 		selectLi.appendChild(makeSelect);
-	};
+	}
 	
 	function getSelectedRadio(){
 		var radios = document.forms[0].region;
@@ -25,8 +29,8 @@ window.addEventListener("DOMContentLoaded", function(){
 			if(radios[i].checked){
 				regionValue = radios[i].value;
 			}
-		};
-	};
+		}
+	}
 	
 	function toggle(n){
 		switch(n){
@@ -63,7 +67,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			item.comments = ["Description:", $("comments").value];
 		localStorage.setItem(id, JSON.stringify(item));
 		alert("Data Saved!");
-	};
+	}
 	
 	function getData(){
 		toggle("on");
@@ -105,28 +109,37 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
+	function showValue(){
+           result.innerHTML = $("year").value;
+  	}   
+  	var result = document.getElementById('year');   
+  	showValue(); 
+
 	
 	var partsGroup = ["Drivetrain", "Body", "Chassis"],
 		regionValue
 		;
 	partCats();
-	
-	
-	
+
 	var display = $("display");
 	display.addEventListener("click", getData);
 	
-	var clear = $("clear")
+	var clear = $("clear");
 	clear.addEventListener("click", clearData);
 	
 	var save = $("submit");
 	save.addEventListener("click", saveData);
 
-
-
-
-
-
-
-
 });
+
+function $(x){
+	var element = document.getElementById(x);
+	return element;
+};
+ 
+function showValue(){
+           result.innerHTML = $("year").value;
+};   
+
+var result = document.getElementById('result');   
+showValue(); 

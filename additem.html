@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--Justin Tilley Project 1 Term 1210-->
+<!--Justin Tilley Project 2 VFW Term 1210-->
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -12,25 +12,26 @@
 	</head>
 	<body>
 		<header>
-			<h1>DiY Vehicle Repairs</h1>
+			<h1><span>DiY</span> Vehicle Repairs List</h1>
 		</header>
 		<form action="" method="post" id="carForm">
 			<fieldset>
 				<legend>Vehicle Information</legend>
 				<ul>
 					<li>Vehicle Region:
-						<ul>
-							<li><input type="radio" checked value="Domestic" id="domestic" name="region" /><label for="domestic">Domestic <small><i>Chevy,Dodge,Ford,ect.</i></small></label></li>
-							<li><input type="radio" value="Asian" id="asian" name="region" /><label for="asian">Asian <small><i>Honda,Nissan,Toyota,ect.</i></small></label></li>
-							<li><input type="radio" value="European" id="european" name="region" /><label for="european">European <small><i>BMW,Mercedes,Audi,ect.</i></small></label></li>	
+						<ul id="radios">
+							<li><input type="radio" checked value="Domestic" id="domestic" name="region" /><label for="domestic">Domestic <small id="exp"><i>Chevy,Dodge,Ford,ect.</i></small></label></li>
+							<li><input type="radio" value="Asian" id="asian" name="region" /><label for="asian">Asian <small id="exp"><i>Honda,Nissan,Toyota,ect.</i></small></label></li>
+							<li><input type="radio" value="European" id="european" name="region" /><label for="european">European <small id="exp"><i>BMW,Mercedes,Audi,ect.</i></small></label></li>	
 						</ul>
 					</li>
 					<li><label for="make">Make:</label><input type="text" id="make" /></li>
 					<li><label for="model">Model:</label><input type="text" id="model" /></li>
 					<li id="select"><label for="groups">Parts Category:</label></li>						
-					<li><label for="year">Year:</label><input type="range" id="year" name="year" value="" min="1970" max="2012"/></li>
+					<li><label for="year">Year:</label><input type="range" id="year" name="year" value="2012" min="1970" max="2012" onchange="showValue();"/><output id="result">2012</output></li>
+					
 					<li><label for="date">Expected date for repair:</label><input type="date" id="date" min="2012-01-01" max="2012-12-31" /></li>
-					<li><label for="comments">Description of repair:</label><textarea id="comments"></textarea></li>
+					<li><label for="comments">Description of repair:</label><div><textarea id="comments"></textarea></div></li>
 					<li><input type="hidden" value="true" /></li>
 				</ul>
 			</fieldset>
