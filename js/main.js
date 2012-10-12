@@ -1,9 +1,9 @@
 //Justin Tilley
-//Project 2
+//Project 3
 //VFW Term 1210
 
 window.addEventListener("DOMContentLoaded", function(){
-	//alert(localStorage.value(0))
+
 	function $(x){
 		var element = document.getElementById(x);
 		return element;
@@ -54,8 +54,12 @@ window.addEventListener("DOMContentLoaded", function(){
 	
 	}
 	
-	function saveData(){
-		var id = Math.floor(Math.random()*1000001);
+	function saveData(key){
+		if(!key){
+			var id = Math.floor(Math.random()*1000001);
+		}else{
+			id = key;
+		}
 		getSelectedRadio();
 		var item = {};
 			item.region = ["Region:", regionValue];
@@ -82,6 +86,7 @@ window.addEventListener("DOMContentLoaded", function(){
 		$("items").style.display = "block";
 		for(var i=0, j=localStorage.length; i<j; i++){
 			var makeLi = document.createElement("li");
+			var linksLi = document.createElement("li");
 			makeList.appendChild(makeLi);
 			var key = localStorage.key(i);
 			var value = localStorage.getItem(key);
@@ -92,10 +97,113 @@ window.addEventListener("DOMContentLoaded", function(){
 				var makeSubli = document.createElement("li");
 				makeSublist.appendChild(makeSubli);
 				var optSubText = object[a][0] + " " + object[a][1];
-				makeSubli.innerHTML = optSubText
+				makeSubli.innerHTML = optSubText;
+				makeSublist.appendChild(linksLi);
 			}
+			makeItemLinks(localStorage.key(i), linksLi);
 		}
 	
+	}
+	
+	function makeItemLinks(key, linksLi){
+		var editLink = document.createElement("a");
+		editLink.href = "#";
+		editLink.key = key;
+		var editText = "Edit Repair";
+		editLink.addEventListener("click", editItem);
+		editLink.innerHTML = editText;
+		linksLi.appendChild(editLink);
+		
+		var deleteLink = document.createElement("a");
+		deleteLink.href = "#";
+		deleteLink.key = key;
+		var deleteText = "Delete Repair";
+		deleteLink.addEventListener("click", deleteItem);
+		deleteLink.innerHTML = deleteText;
+		linksLi.appendChild(deleteLink);
+	}
+	
+	function editItem(){
+		 var value = localStorage.getItem(this.key);
+		 var item = JSON.parse(value);
+		 
+		 toggle("off");
+		 $("groups").value = item.group[1];
+		 $("make").value = item.make[1];
+		 $("model").value = item.model[1];
+		 $("year").value = item.year[1];
+		 $("date").value = item.date[1];
+		 $("comments").value = item.comments[1]
+		 var radios = document.forms[0].region;
+		 for(var i=0; i<radios.length; i++){
+		 	if(radios[i].value == "Domestic" && item.region[1] == "Domestic"){
+		 		radios[i].setAttribute("checked", "checked");
+		 	}else if(radios[i].value == "Asian" && item.region[1] == "Asian"){
+		 		radios[i].setAttribute("checked", "checked");
+		 	}else if(radios[i].value == "European" && item.region[1] == "European"){
+		 		radios[i].setAttribute("checked", "checked");
+		 	}
+		 };
+		 
+		 save.removeEventListener("click", saveData);
+		 $("submit").value = "Edit Repair";
+		 var editSubmit = $("submit");
+		 editSubmit.addEventListener("click", validate);
+		 editSubmit.key = this.key;
+	
+	}
+	
+	function validate(e){
+		var getGroup = $("groups");
+		var getMake = $("make");
+		var getModel = $("model");
+		var messageAry = [];
+		
+		errMsg.innerHTML = "";
+		getGroup.style.border = "none";
+		getMake.style.border = "none";
+		getModel.style.border = "none";
+
+		
+		
+		if(getGroup.value === "--Choose The Parts Category--"){
+			var groupError = "Please choose a category.";
+			getGroup.style.border = "1px solid red";
+			messageAry.push(groupError);
+		}
+		if(getMake.value === "" ){
+			var makeError = "Please enter the make of the vehicle."
+			getMake.style.border = "1px solid red";
+			messageAry.push(makeError);
+		}	
+		if(getModel.value === "" ){
+			var modelError = "Please enter the model of the vehicle."
+			getModel.style.border = "1px solid red";
+			messageAry.push(modelError);
+		}	
+		if(messageAry.length >= 1){
+			for(var i=0, j=messageAry.length; i < j; i++){
+				var errorTxt = document.createElement("li");
+				errorTxt.innerHTML = messageAry[i];
+				errorTxt.style.color = "red"
+				errMsg.appendChild(errorTxt);
+			}
+			e.preventDefault();
+			return false;
+		}else{
+			saveData(this.key);
+		}	
+	}
+	
+	function deleteItem(){
+		var ask = confirm("Are you sure you?");
+		if(ask){
+			localStorage.removeItem(this.key);
+			alert("Repair was deleted.")
+			window.location.reload();
+		}else{
+			alert("Repair was NOT deleted.")
+		}
 	}
 	
 	function clearData(){
@@ -109,15 +217,17 @@ window.addEventListener("DOMContentLoaded", function(){
 		}
 	}
 	
-	function showValue(){
+	/*function showValue(){
            result.innerHTML = $("year").value;
-  	}   
+  	}  
+  	 
   	var result = document.getElementById('year');   
-  	showValue(); 
+  	showValue(); */
 
 	
-	var partsGroup = ["Drivetrain", "Body", "Chassis"],
-		regionValue
+	var partsGroup = ["--Choose The Parts Category--","Drivetrain", "Body", "Chassis"],
+		regionValue,
+		errMsg = $("errors")
 		;
 	partCats();
 
@@ -128,7 +238,7 @@ window.addEventListener("DOMContentLoaded", function(){
 	clear.addEventListener("click", clearData);
 	
 	var save = $("submit");
-	save.addEventListener("click", saveData);
+	save.addEventListener("click", validate);
 
 });
 

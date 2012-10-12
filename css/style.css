@@ -86,3 +86,11 @@ nav{
 	background: #B4B8CF;
 	margin-top: 20px
 }
+
+div ul li{
+	list-style: none;
+}
+
+div ul li ul li > a{
+	line-height: 30px;
+}
