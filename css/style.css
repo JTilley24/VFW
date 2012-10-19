@@ -1,6 +1,6 @@
 /*
 Justin Tilley
-Project 2
+Project 4
 VFW Term 1210
 */
 
@@ -85,6 +85,15 @@ nav{
 	padding: 10px;
 	background: #B4B8CF;
 	margin-top: 20px
+}
+
+div ul li ul{
+	background: #DFE1F0;
+	border: 1px solid gray;
+	margin-top: 15px;
+	margin-right: 30px;
+	padding: 10px;
+	border-radius: 20px;
 }
 
 div ul li{

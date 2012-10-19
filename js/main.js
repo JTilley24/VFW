@@ -1,5 +1,5 @@
 //Justin Tilley
-//Project 3
+//Project 4
 //VFW Term 1210
 
 window.addEventListener("DOMContentLoaded", function(){
@@ -76,7 +76,8 @@ window.addEventListener("DOMContentLoaded", function(){
 	function getData(){
 		toggle("on");
 		if(localStorage.length === 0){
-			alert("No Data!");
+			alert("No Data! Default data was added.");
+			autoData();
 		};
 		var makeDiv = document.createElement("div");
 		makeDiv.setAttribute("id", "items");
@@ -93,6 +94,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			var object = JSON.parse(value);
 			var makeSublist = document.createElement("ul");
 			makeLi.appendChild(makeSublist);
+			getImage(object.region[1], makeSublist);
 			for(var a in object){
 				var makeSubli = document.createElement("li");
 				makeSublist.appendChild(makeSubli);
@@ -103,6 +105,21 @@ window.addEventListener("DOMContentLoaded", function(){
 			makeItemLinks(localStorage.key(i), linksLi);
 		}
 	
+	}
+	
+	function autoData(){
+		for(var n in json){
+			var id = Math.floor(Math.random()*1000001);
+			localStorage.setItem(id, JSON.stringify(json[n]));
+		}
+	}
+	
+	function getImage(imgName, makeSublist){
+		var imageLi = document.createElement("li");
+		makeSublist.appendChild(imageLi);
+		var newImg = document.createElement("img");
+		var setSrc = newImg.setAttribute("src", "images/" + imgName + ".png");
+		imageLi.appendChild(newImg);
 	}
 	
 	function makeItemLinks(key, linksLi){
@@ -216,15 +233,7 @@ window.addEventListener("DOMContentLoaded", function(){
 			return false;
 		}
 	}
-	
-	/*function showValue(){
-           result.innerHTML = $("year").value;
-  	}  
-  	 
-  	var result = document.getElementById('year');   
-  	showValue(); */
-
-	
+		
 	var partsGroup = ["--Choose The Parts Category--","Drivetrain", "Body", "Chassis"],
 		regionValue,
 		errMsg = $("errors")
